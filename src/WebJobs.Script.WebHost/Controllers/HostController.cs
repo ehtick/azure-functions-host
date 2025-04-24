@@ -421,6 +421,25 @@ namespace Microsoft.Azure.WebJobs.Script.WebHost.Controllers
                 : StatusCode(StatusCodes.Status500InternalServerError, new { status = result.Error });
         }
 
+        [HttpGet]
+        [Route("admin/host/triggers")]
+        [Authorize(Policy = PolicyNames.AdminAuthLevelOrInternal)]
+        [ResourceContainsSecrets]
+        [RequiresRunningHost]
+        public async Task<IActionResult> GetTriggers()
+        {
+            _metricsLogger.LogEvent(MetricEventNames.GetTriggersInvoked);
+
+            var result = await _functionsSyncManager.GetTriggersAsync();
+
+            // GetTriggersAsync() does not swallow exceptions,so any failures will still be a 500.
+            // The only result.Success == false we need to consideris when the environment
+            // does not support sync triggers.
+            return result.Success
+                ? Ok(result)
+                : StatusCode(StatusCodes.Status403Forbidden, new { status = result.Error });
+        }
+
         [HttpPost]
         [Route("admin/host/restart")]
         [Authorize(Policy = PolicyNames.AdminAuthLevel)]
