@@ -12,3 +12,4 @@
 - Update Python Worker Version to [4.37.0](https://github.com/Azure/azure-functions-python-worker/releases/tag/4.37.0)
 - Add runtime and process metrics. (#11034)
 - Add `win-arm64` and `linux-arm64` to the list of PowerShell runtimes; added filter for `osx` RIDs (includes `osx-x64` and `osx-arm64`) (#11013)
+- Disable Diagnostic Events when Table Storage is not accessible (#10996)
