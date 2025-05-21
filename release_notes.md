@@ -8,3 +8,4 @@
 - Warn if .azurefunctions folder does not exist (#10967)
 - Memory allocation & CPU optimizations in `GrpcMessageExtensionUtilities.ConvertFromHttpMessageToExpando` (#11054)
 - Memory allocation optimizations in `ReadLanguageWorkerFile` by reading files in buffered chunks, preventing LOH allocations (#11069)
+- Enhancing the capability to send startup failure logs to AppInsights/Otel. (#11055)
