@@ -16,3 +16,4 @@
 - Memory allocation optimizations in `FeatureFlags.IsEnabled` by adopting zero-allocation `ContainsToken` for efficient delimited token search (#11075)
 - Improvements to coldstart pipeline (#11102).
 - Update Python Worker Version to [4.38.0](https://github.com/Azure/azure-functions-python-worker/releases/tag/4.38.0)
+- Only start the Diagnostic Events flush logs timer when events are present, preventing unnecessary flush attempts (#11100).
