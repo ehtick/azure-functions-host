@@ -20,3 +20,4 @@
 - Switched memory usage reporting to use CGroup metrics by default for Linux consumption (#11114)
 - Add JitTrace files for v4.1040 (#11117)
 - Update Java Worker Version to [2.19.2](https://github.com/Azure/azure-functions-java-worker/releases/tag/2.19.2)
+- Make serialization case insensitive (#11123)
