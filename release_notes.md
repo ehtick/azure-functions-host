@@ -6,6 +6,7 @@
 - Emit diagnostic warning for deprecated Azure Functions Proxies usage (#11405)
 - Update Python Worker Version to [4.40.2](https://github.com/Azure/azure-functions-python-worker/releases/tag/4.40.2)
 - Add JitTrace Files for v4.1044
+- Implementing a resolver that resolves worker configurations from specified probing paths (#11258)
 - Remove duplicate function names from sync triggers payload(#11371)
 - Avoid emitting empty tag values for health check metrics (#11393)
 - Run health checks from the active ScriptHost (#11410)
