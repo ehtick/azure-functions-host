@@ -14,3 +14,4 @@
     - [Remove net6.0 prelaunch app.](https://github.com/Azure/azure-functions-dotnet-worker/pull/3299)
     - [Add net10.0 prelaunch app.](https://github.com/Azure/azure-functions-dotnet-worker/pull/3297)
     - [Build Linux artifacts using ubuntu 24.](https://github.com/Azure/azure-functions-dotnet-worker/pull/3285)
+- Update Python Worker Version to [4.42.0](https://github.com/Azure/azure-functions-python-worker/releases/tag/4.42.0)
