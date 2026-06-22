@@ -256,8 +256,7 @@ namespace Microsoft.Azure.WebJobs.Script.Workers.Rpc
                                 if (workerChannel != null)
                                 {
                                     _logger.LogDebug("Disposing WebHost channel for workerId: {channelId}, for runtime:{language}", workerId, language);
-                                    workerChannel.Shutdown(workerException);
-                                    (channelTask.Result as IDisposable)?.Dispose();
+                                    workerChannel.ShutdownAndDispose(workerException, _logger);
                                 }
                             }
                         });
@@ -282,8 +281,7 @@ namespace Microsoft.Azure.WebJobs.Script.Workers.Rpc
                             if (workerChannel != null)
                             {
                                 _logger.LogDebug("Disposing WebHost channel for workerId: {channelId}, for runtime:{language}", workerId, language);
-                                workerChannel.Shutdown(workerException);
-                                (channelTask.Result as IDisposable)?.Dispose();
+                                workerChannel.ShutdownAndDispose(workerException, _logger);
                             }
                         }
                     });
@@ -321,9 +319,9 @@ namespace Microsoft.Azure.WebJobs.Script.Workers.Rpc
                                         else
                                         {
                                             IRpcWorkerChannel workerChannel = channelTask.Result;
-                                            if (workerChannel != null)
+                                            if (workerChannel is not null)
                                             {
-                                                (channelTask.Result as IDisposable)?.Dispose();
+                                                workerChannel.ShutdownAndDispose(null, _logger);
                                             }
                                         }
                                         latencyEvent.Dispose();
@@ -358,11 +356,11 @@ namespace Microsoft.Azure.WebJobs.Script.Workers.Rpc
                                 _logger.LogDebug(ex, "Removing errored worker channel");
                             }
 
-                            if (workerChannel is IDisposable disposableWorkerChannel)
+                            if (workerChannel is not null)
                             {
                                 try
                                 {
-                                    disposableWorkerChannel.Dispose();
+                                    workerChannel.ShutdownAndDispose(null, _logger);
                                 }
                                 catch (Exception ex)
                                 {
